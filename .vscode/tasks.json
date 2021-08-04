@@ -1,0 +1,26 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "docker-run",
+      "label": "docker-run: debug",
+      "dependsOn": ["docker-build"],
+      "dockerRun": {
+        "volumes": [
+          {
+            "containerPath": "/docker-hoster",
+            "localPath": "${workspaceFolder}/src/docker-hoster"
+          },
+          {
+            "containerPath": "/tmp/hosts",
+            "localPath": "${workspaceFolder}/test/etc/hosts"
+          }
+        ]
+      },
+      "python": {
+        // "args": ["runserver", "0.0.0.0:8000"],
+        "file": "hoster.py"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+version: "3.4"
+services:
+  python:
+    container_name: python
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: dev
+    volumes:
+      - ./src/docker_hoster:/app/src/docker_hoster
+      - ./tests/etc/hosts:/tmp/hosts
+      - /var/run/docker.sock:/tmp/docker.sock
+    ports:
+      - 5678:5678

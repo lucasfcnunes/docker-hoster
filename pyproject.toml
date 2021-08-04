@@ -1,0 +1,35 @@
+[tool.poetry]
+name = "docker-hoster"
+version = "0.1.0"
+description = ""
+authors = ["David Darias <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/lucasfcnunes/docker-hoster"
+keywords = ['docker', 'dns', 'hosts']
+
+[tool.poetry.scripts]
+main = "docker_hoster.hoster:main"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+docker = { extras=["tls"], version="^5.0.0" } # six dependency missing :: https://github.com/docker/docker-py/issues/2842 probably introduced @ https://github.com/docker/docker-py/pull/2788
+six = "^1.16.0" # docker 5.0.0 issue
+# docker = { extras=["tls"], version="^4.4.4" }
+# python-hosts = "^1.0.1"
+python-hosts = { git="https://github.com/lucasfcnunes/python-hosts", branch="for-docker-hoster" } # has inline-comments
+loguru = "^0.5.3"
+
+[tool.poetry.dev-dependencies]
+black = "^21.6b0"
+pylama = "^7.7.1"
+pytest = "^6.2.4"
+pyexpect = "^1.0.21"
+pytest-cov = "^2.12.1"
+debugpy = "^1.3.0"
+tox-poetry-installer = { extras=["poetry"], version="^0.8.1" }
+loguru = { version="^0.5.3", optional=true }
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
